@@ -1,15 +1,30 @@
 package com.example.raihane_benjilali.model;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import com.example.raihane_benjilali.model.Locatie;
 
+import javax.xml.stream.Location;
+import java.time.LocalDateTime;
+@Entity
 public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDateTime tijdstip;
+    @NotEmpty
     private String titel;
+    @NotEmpty
     private String omschrijving;
+    @NotEmpty
     private String organisatie;
+    @Email
+    @NotEmpty
     private String mailContact;
-    private String locatie;
+    @ManyToOne
+    private Locatie locatie;
 
     public int getId() {
         return id;
