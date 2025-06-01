@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="relative h-screen">
+    <div th:replace="fragments :: header"></div>
+    <div class="px-5">
+    <h1>About Anderlechtse NGO</h1>
 
+    <p>Adres: Anderlechtsestraat 15, 1070 Anderlecht</p>
+    <p><a href="Contact@gmail.com">Email: Contact@gmail.com</a></p>
+    <p>Telefoonnummer: 0484 65 54 15</p>
+    <p>Beschrijving: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales lacinia turpis,
+        nec lobortis sapien tincidunt non. Fusce tristique blandit sapien, ut molestie magna. Vivamus ac tincidunt enim. Donec sed tortor odio.
+        Proin lacinia est eget erat hendrerit, non posuere risus molestie. Curabitur magna magna, placerat sit amet enim id,
+        egestas sagittis ipsum. Integer tincidunt bibendum sapien, nec vestibulum eros.</p>
+    </div>
+    <div th:replace="fragments :: footer"></div>
 </body>
 </html>

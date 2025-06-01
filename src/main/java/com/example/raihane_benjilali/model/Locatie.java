@@ -4,22 +4,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Locatie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
+    @NotEmpty(message = "{event.empty}")
     private String naam;
+    @NotEmpty(message = "{event.empty}")
     private String adres;
+    @NotNull(message = "{event.empty}")
+    @Min(value = 1, message = "{event.minCap}")
     private int capaciteit;
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNaam() {
@@ -49,8 +53,7 @@ public class Locatie {
     public Locatie() {
     }
 
-    public Locatie(int id, String naam, String adres, int capaciteit) {
-        this.id = id;
+    public Locatie(String naam, String adres, int capaciteit) {
         this.naam = naam;
         this.adres = adres;
         this.capaciteit = capaciteit;

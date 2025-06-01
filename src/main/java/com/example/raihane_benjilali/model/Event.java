@@ -2,9 +2,11 @@ package com.example.raihane_benjilali.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import com.example.raihane_benjilali.model.Locatie;
+
 
 import javax.xml.stream.Location;
 import java.time.LocalDateTime;
@@ -12,26 +14,23 @@ import java.time.LocalDateTime;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private LocalDateTime tijdstip;
-    @NotEmpty
+    @NotEmpty(message = "{event.empty}")
     private String titel;
-    @NotEmpty
+    @NotEmpty(message = "{event.empty}")
     private String omschrijving;
-    @NotEmpty
+    @NotEmpty(message = "{event.empty}")
     private String organisatie;
     @Email
-    @NotEmpty
+    @NotEmpty(message = "{event.empty}")
     private String mailContact;
-    @ManyToOne
+    @Valid
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Locatie locatie;
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDateTime getTijdstip() {
@@ -74,24 +73,24 @@ public class Event {
         this.mailContact = mailContact;
     }
 
-    public String getLocatie() {
+    public Locatie getLocatie() {
         return locatie;
     }
 
-    public void setLocatie(String locatie) {
+    public void setLocatie(Locatie locatie) {
         this.locatie = locatie;
     }
 
-    public Event() {
-    }
-
-    public Event(int id, LocalDateTime tijdstip, String titel, String omschrijving, String organisatie, String mailContact, String locatie) {
-        this.id = id;
+    public Event(LocalDateTime tijdstip, String titel, String omschrijving, String organisatie, String mailContact, Locatie locatie) {
         this.tijdstip = tijdstip;
         this.titel = titel;
         this.omschrijving = omschrijving;
         this.organisatie = organisatie;
         this.mailContact = mailContact;
         this.locatie = locatie;
+    }
+
+    public Event() {
+
     }
 }

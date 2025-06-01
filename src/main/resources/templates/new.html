@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nieuwe evenementen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="relative h-screen">
+    <div th:replace="fragments :: header"></div>
+    <div class="px-5">
+    <h1>Nieuwe evenement</h1>
 
+    <form class="grid grid-cols-2" th:action="@{/new}" th:object="${event}" method="post">
+
+        <label>Titel: </label>
+        <div>
+        <input class="border border-gray-500 px-4 py-2" type="text" th:field="*{titel}">
+        <div class="text-red-600" th:if="${#fields.hasErrors('titel')}" th:errors="*{titel}"></div>
+        </div>
+
+        <label>Datum en tijd: </label>
+        <input class="border border-gray-500 px-4 py-2" type="datetime-local" th:field="*{tijdstip}">
+
+        <label>Omschrijving: </label>
+        <div>
+        <textarea class="border border-gray-500 px-4 py-2" th:field="*{omschrijving}"></textarea>
+        <div class="text-red-600" th:if="${#fields.hasErrors('omschrijving')}" th:errors="*{omschrijving}"></div>
+        </div>
+
+        <label>Organisatie: </label>
+        <div>
+        <input class="border border-gray-500 px-4 py-2" type="text" th:field="*{organisatie}">
+        <div class="text-red-600" th:if="${#fields.hasErrors('organisatie')}" th:errors="*{organisatie}"></div>
+        </div>
+
+        <label>Mail contactpersoon: </label>
+        <div>
+        <input class="border border-gray-500 px-4 py-2" type="email" th:field="*{mailContact}">
+        <div class="text-red-600" th:if="${#fields.hasErrors('mailContact')}" th:errors="*{mailContact}"></div>
+        </div>
+
+        <label>Locatie naam: </label>
+        <div>
+        <input class="border border-gray-500 px-4 py-2" type="text" th:field="*{locatie.naam}">
+        <div class="text-red-600" th:if="${#fields.hasErrors('locatie.naam')}" th:errors="*{locatie.naam}"></div>
+        </div>
+
+        <label>Locatie adres: </label>
+        <div>
+        <input class="border border-gray-500 px-4 py-2" type="text" th:field="*{locatie.adres}">
+        <div class="text-red-600" th:if="${#fields.hasErrors('locatie.adres')}" th:errors="*{locatie.adres}"></div>
+        </div>
+
+        <label>Capaciteit: </label>
+        <div>
+        <input class="border border-gray-500 px-4 py-2" type="number" th:field="*{locatie.capaciteit}">
+        <div class="text-red-600" th:if="${#fields.hasErrors('locatie.capaciteit')}" th:errors="*{locatie.capaciteit}"></div>
+        </div>
+        <button class="border border-gray-700 px-4 py-2 rounded hover:bg-gray-200" type="submit">Toevoegen</button>
+    </form>
+    </div>
+    <div th:replace="fragments :: footer"></div>
 </body>
 </html>

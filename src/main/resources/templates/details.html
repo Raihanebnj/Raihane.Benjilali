@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="relative h-screen">
+    <div th:replace="fragments :: header"></div>
+    <div class="px-5">
+    <h1>Details</h1>
 
+    <p>Titel: <span th:text="${event.titel}"></span></p>
+    <p>Datum: <span th:text="${event.tijdstip}"></span></p>
+    <p>Omschrijving: <span th:text="${event.omschrijving}"></span></p>
+    <p>Organisatie: <span th:text="${event.organisatie}"></span></p>
+    <p>Email Contactpersoon: <span th:text="${event.mailContact}"></span></p>
+    <p>Locatie naam: <span th:text="${event.locatie.naam}"></span></p>
+    <p>Adres: <span th:text="${event.locatie.adres}"></span></p>
+    <p>Capaciteit: <span th:text="${event.locatie.capaciteit}"></span></p>
+    </div>
+
+    <div th:replace="fragments :: footer"></div>
 </body>
 </html>
